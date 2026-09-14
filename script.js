@@ -108,9 +108,7 @@ function removeBookFromLibrary(bookId) {
 }
 
 function toggleBookReadStatus (bookId) {
-    const selectedBook = myLibrary.find((book) => {
-        return book.id === bookId;
-    });
+    const selectedBook = myLibrary.find((book) => book.id === bookId);
 
     if(!selectedBook) {
         return 
