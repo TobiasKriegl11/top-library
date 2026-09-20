@@ -23,25 +23,24 @@ bookForm.addEventListener("submit", (event) => {
 
 const myLibrary = [];
 
-function Book(title, author, pages, isRead) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }    
+    
+    info() {
+        const readStatus = this.isRead ? "read" : "not read";
+
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
     }
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-}
 
-Book.prototype.info = function() {
-    const readStatus = this.isRead ? "read" : "not read";
-
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${readStatus}`;
-}
-
-Book.prototype.toggleRead = function () {
-    this.isRead = !this.isRead;
+    toggleRead() {
+        this.isRead = !this.isRead;
+    }
 }
 
 function addBookToLibrary(title, author, pages, isRead) {
